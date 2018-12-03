@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import cn from 'classnames';
-import { channelsSelector } from '../selectors';
+import channelsSelector from '../selectors';
 import * as actionCreators from '../actions';
 
 const mapStateToProps = (state) => {
