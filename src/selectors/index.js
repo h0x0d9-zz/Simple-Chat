@@ -2,7 +2,9 @@ import { createSelector } from 'reselect';
 
 const getChannels = state => state.channels;
 
-export default createSelector(
+export const channelsSelector = createSelector(
   getChannels,
   data => Object.values(data),
 );
+
+export const getCurrentChannelId = state => state.currentChannel.id;

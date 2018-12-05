@@ -4,7 +4,7 @@ import reducers from './reducers';
 import * as actions from './actions';
 
 
-export default ({ channels }) => {
+export default ({ channels, currentChannelId }) => {
   /* eslint-disable no-underscore-dangle */
   const store = createStore(
     reducers,
@@ -13,6 +13,7 @@ export default ({ channels }) => {
   /* eslint-enable */
 
   store.dispatch(actions.addChannels(channels));
+  store.dispatch(actions.setCurrentChannel({ id: currentChannelId }));
 
   return store;
 };

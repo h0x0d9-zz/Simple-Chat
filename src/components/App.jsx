@@ -1,20 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import cn from 'classnames';
-import channelsSelector from '../selectors';
-import * as actionCreators from '../actions';
 
-const mapStateToProps = (state) => {
-  const props = {
-    channels: channelsSelector(state),
-  };
-  return props;
-};
+import ChannelsList from './ChannelsList';
 
-@connect(mapStateToProps, actionCreators)
+
 export default class App extends React.Component {
   render() {
-    const { channels } = this.props;
     return (
       <div className='row'>
         <div className='col-lg-4 col-xl-3 mb-2'>
@@ -26,17 +16,7 @@ export default class App extends React.Component {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="channelsNavbarToggler">
-              <ul className='nav flex-column nav-pills'>
-                {
-                  channels.map(ch => {
-                    return (
-                      <li className='nav-item' key={ch.id}>
-                        <a className="nav-link" href='#'> # {ch.name} </a>
-                      </li>
-                    );
-                  })
-                }
-              </ul>
+              <ChannelsList/>
             </div>
           </nav>
         </div>
