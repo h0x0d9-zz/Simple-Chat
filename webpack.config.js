@@ -1,6 +1,8 @@
+const NODE_ENV = process.env.NODE_ENV || 'development';
 module.exports = {
-  mode: process.env.NODE_ENV || 'development',
+  mode: NODE_ENV,
   entry: [
+    'babel-polyfill',
     `${__dirname}/src/index.js`,
   ],
   externals: {
@@ -12,6 +14,7 @@ module.exports = {
   output: {
     publicPath: '/assets/',
   },
+  target: 'node',
   module: {
     rules: [
       {
@@ -25,4 +28,5 @@ module.exports = {
       },
     ],
   },
+  devtool: NODE_ENV === 'development' ? 'source-map' : null,
 };

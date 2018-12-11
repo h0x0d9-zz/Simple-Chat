@@ -1,19 +1,25 @@
-import { createStore } from 'redux';
-
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import reducers from './reducers';
 import * as actions from './actions';
 
 
-export default ({ channels, currentChannelId }) => {
+export default ({ channels, currentChannelId, messages }) => {
   /* eslint-disable no-underscore-dangle */
+  const ext = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+  /* eslint-enable */
+  const composeEnhancers = ext || compose;
+
   const store = createStore(
     reducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    composeEnhancers(
+      applyMiddleware(thunk),
+    ),
   );
-  /* eslint-enable */
 
   store.dispatch(actions.addChannels(channels));
   store.dispatch(actions.setCurrentChannel({ id: currentChannelId }));
+  store.dispatch(actions.addMessages(messages));
 
   return store;
 };
