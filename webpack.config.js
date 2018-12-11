@@ -28,5 +28,5 @@ module.exports = {
       },
     ],
   },
-  devtool: NODE_ENV === 'development' ? 'source-map' : null,
+  devtool: NODE_ENV === 'development' ? 'source-map' : false,
 };
