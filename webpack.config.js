@@ -1,6 +1,5 @@
-const NODE_ENV = process.env.NODE_ENV || 'development';
 module.exports = {
-  mode: NODE_ENV,
+  mode: process.env.NODE_ENV || 'development',
   entry: [
     `${__dirname}/src/index.js`,
     'babel-polyfill',

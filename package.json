@@ -14,9 +14,10 @@
     "build-server": "babel server --out-dir dist --source-maps inline",
     "build-app": "npx webpack -p --env production",
     "build": "npm run build-app && npm run build-server",
-    "heroku-postbuild": "npm run build",
     "postinstall": "npm run build",
-    "dev": "babel-node ./server/bin/slack.js"
+    "heroku-postbuild": "webpack -p",
+    "dev": "babel-node ./server/bin/slack.js",
+    "start": "node ./dist/bin/slack.js"
   },
   "repository": {
     "type": "git",
@@ -37,13 +38,13 @@
     ]
   },
   "dependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.5",
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
     "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-decorators": "^7.1.2",
     "@babel/polyfill": "^7.0.0",
-    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-env": "^7.1.0",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "axios": "^0.18.0",
@@ -63,7 +64,7 @@
     "koa-pug": "^3.0.0-2",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
-    "koa-webpack": "^5.1.1",
+    "koa-webpack": "^5.1.0",
     "lodash": "^4.17.11",
     "react": "^16.6.3",
     "react-bootstrap": "^1.0.0-beta.2",
