@@ -2,7 +2,6 @@ module.exports = {
   mode: process.env.NODE_ENV || 'development',
   entry: [
     `${__dirname}/src/index.js`,
-    'babel-polyfill',
   ],
   externals: {
     gon: 'gon',
@@ -27,5 +26,4 @@ module.exports = {
       },
     ],
   },
-  devtool: NODE_ENV === 'development' ? 'source-map' : false,
 };
