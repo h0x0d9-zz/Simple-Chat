@@ -2,8 +2,8 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 module.exports = {
   mode: NODE_ENV,
   entry: [
-    'babel-polyfill',
     `${__dirname}/src/index.js`,
+    'babel-polyfill',
   ],
   externals: {
     gon: 'gon',
@@ -14,6 +14,7 @@ module.exports = {
   output: {
     path: `${__dirname}/assets`,
     publicPath: '/assets/',
+    filename: 'main.js',
   },
   target: 'node',
   module: {

@@ -14,8 +14,9 @@
     "build-server": "babel server --out-dir dist --source-maps inline",
     "build-app": "npx webpack -p --env production",
     "build": "npm run build-app && npm run build-server",
+    "heroku-postbuild": "npm run build",
     "postinstall": "npm run build",
-    "start": "babel-node ./server/bin/slack.js"
+    "dev": "babel-node ./server/bin/slack.js"
   },
   "repository": {
     "type": "git",
