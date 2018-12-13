@@ -1,5 +1,6 @@
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
+  devtool: 'source-map',
   entry: [
     `${__dirname}/src/index.js`,
   ],
@@ -11,8 +12,8 @@ module.exports = {
   },
   output: {
     path: `${__dirname}/assets/`,
+    publicPath: '/assets/',
   },
-  target: 'node',
   module: {
     rules: [
       {
