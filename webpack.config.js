@@ -10,7 +10,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   output: {
-    publicPath: '/assets/',
+    path: `${__dirname}/assets/`,
   },
   target: 'node',
   module: {
