@@ -18,6 +18,8 @@ export const addMessageSuccess = createAction('MESSAGE_ADD_SUCCESS');
 export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
 
 export const addMessage = (text, channelId) => async (dispatch) => {
+  log('calling ACTION addMessage with %o, %o params', text, channelId);
+
   dispatch(addMessageRequest());
   try {
     const data = {
@@ -28,11 +30,10 @@ export const addMessage = (text, channelId) => async (dispatch) => {
       },
     };
 
-    const response = await axios.post(routes.messages(channelId), { data });
-    log(response);
-    const { id, attributes } = response.data.data;
-    dispatch(addMessageSuccess({ id, ...attributes }));
+    const resp = await axios.post(routes.messages(channelId), { data });
+    log('sending message query result {%o}', resp.status);
   } catch (e) {
+    log('caught error %o on sending message', e);
     dispatch(addMessageFailure(e));
   }
 };
