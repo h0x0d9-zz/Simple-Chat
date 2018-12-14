@@ -22,25 +22,24 @@ const mapStateToProps = (state) => {
   },
 })
 class NewMessageForm extends React.Component {
-  addMessage = ({ text }) => {
-    const { currentChannelId, addMessage } = this.props;
-    return addMessage(_.escape(text), currentChannelId);
+  sendMessage = ({ text }) => {
+    const { currentChannelId, sendMessage } = this.props;
+    return sendMessage(_.escape(text), currentChannelId);
   };
 
   render() {
-    const { handleSubmit, messageAddingState } = this.props;
-    const disabled = messageAddingState === 'requested';
+    const { handleSubmit, submitting } = this.props;
     return (
       <div className="row align-items-end">
         <div className="col-12">
           <form
-            onSubmit={handleSubmit(this.addMessage)}
+            onSubmit={handleSubmit(this.sendMessage)}
             className="input-group input-group-lg"
           >
             <Field
               name="text"
               required
-              disabled={disabled}
+              disabled={submitting}
               component="input"
               type="text"
               className="form-control"

@@ -21,6 +21,6 @@ const store = createStore(gon);
 
 const socket = io();
 socket.on('newMessage',
-  ({ data: { attributes } }) => store.dispatch(actions.addMessageSuccess(attributes)));
+  ({ data: { attributes } }) => store.dispatch(actions.addMessage(attributes)));
 
 initApp(username, store);

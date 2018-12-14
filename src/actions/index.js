@@ -13,14 +13,12 @@ export const setCurrentChannel = createAction('CURRENT_CHANNEL_SET');
 
 export const addMessages = createAction('MESSAGES_ADD');
 
-export const addMessageRequest = createAction('MESSAGE_ADD_REQUEST');
-export const addMessageSuccess = createAction('MESSAGE_ADD_SUCCESS');
+export const addMessage = createAction('MESSAGE_ADD_SUCCESS');
 export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
 
-export const addMessage = (text, channelId) => async (dispatch) => {
-  log('calling ACTION addMessage with %o, %o params', text, channelId);
+export const sendMessage = (text, channelId) => async (dispatch) => {
+  log('calling ACTION sendMessage with %o, %o params', text, channelId);
 
-  dispatch(addMessageRequest());
   try {
     const data = {
       attributes: {

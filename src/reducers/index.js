@@ -13,7 +13,6 @@ const channels = handleActions({
 
 const currentChannel = handleActions({
   [actions.setCurrentChannel](state, { payload: { id } }) {
-    console.log(id);
     return { id };
   },
 }, 1);
@@ -22,27 +21,14 @@ const messages = handleActions({
   [actions.addMessages](state, { payload }) {
     return _.keyBy(payload, m => m.id);
   },
-  [actions.addMessageSuccess](state, { payload }) {
+  [actions.addMessage](state, { payload }) {
     return { ...state, [payload.id]: payload };
   },
 }, {});
-
-const messageAddingState = handleActions({
-  [actions.addMessageRequest]() {
-    return 'requested';
-  },
-  [actions.addMessageFailure]() {
-    return 'failed';
-  },
-  [actions.addMessageSuccess]() {
-    return 'successed';
-  },
-}, 'none');
 
 export default combineReducers({
   form: formReducer,
   channels,
   messages,
-  messageAddingState,
   currentChannel,
 });
