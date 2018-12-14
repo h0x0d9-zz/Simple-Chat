@@ -13,14 +13,9 @@ export const channelsSelector = createSelector(
 
 export const messagesSelector = createSelector(
   getMessages,
-  messages => Object.values(messages),
+  getCurrentChannelId,
+  (messages, channelId) => Object.values(messages)
+    .filter(m => m.channelId === channelId),
 );
-
-// export const messagesSelector = createSelector(
-//   getMessages,
-//   getCurrentChannelId,
-//   (messages, channelId) => Object.values(messages)
-//     .filter(m => m.channelId === channelId),
-// );
 
 export const getMessageAddingState = state => state.messageAddingState;

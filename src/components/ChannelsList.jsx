@@ -14,6 +14,12 @@ const mapStateToProps = (state) => {
 
 export default @connect(mapStateToProps)
 class ChannelsList extends React.Component {
+  handleChannelChoice = id => (e) => {
+    e.preventDefault();
+    const { setCurrentChannel } = this.props;
+    setCurrentChannel({ id });
+  }
+
   render() {
     const { channels, currentChannelId } = this.props;
 
@@ -21,16 +27,16 @@ class ChannelsList extends React.Component {
       <ul className="nav flex-column nav-pills">
         {
           channels.map((ch) => {
+            const { id, name } = ch;
+
             const className = cn({
               'nav-link': true,
-              active: ch.id === currentChannelId,
+              active: id === currentChannelId,
             });
 
-            const name = `#${ch.name}`;
-
             return (
-              <li className="nav-item" key={ch.id}>
-                <a href={name} className={className}>{name}</a>
+              <li className="nav-item" key={id}>
+                <a href={name} className={className} onClick={this.handleChannelChoice(id)}>{`#${name}`}</a>
               </li>
             );
           })

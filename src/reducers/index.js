@@ -13,6 +13,7 @@ const channels = handleActions({
 
 const currentChannel = handleActions({
   [actions.setCurrentChannel](state, { payload: { id } }) {
+    console.log(id);
     return { id };
   },
 }, 1);
