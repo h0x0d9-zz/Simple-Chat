@@ -36,7 +36,11 @@ class ChannelsList extends React.Component {
 
             return (
               <li className="nav-item" key={id}>
-                <a href={name} className={className} onClick={this.handleChannelChoice(id)}>{`#${name}`}</a>
+                <a href={name} className={className} onClick={this.handleChannelChoice(id)}>
+                  #
+                  {' '}
+                  {name}
+                </a>
               </li>
             );
           })
