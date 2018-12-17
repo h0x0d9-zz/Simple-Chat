@@ -18,4 +18,4 @@ export const messagesSelector = createSelector(
     .filter(m => m.channelId === channelId),
 );
 
-export const getMessageAddingState = state => state.messageAddingState;
+export const getMessageAddingState = state => state.errors.addMessageFailure;
