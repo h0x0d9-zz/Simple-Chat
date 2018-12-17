@@ -4,7 +4,7 @@ import { getMessageAddingState } from '../selectors';
 
 const mapStateToProps = (state) => {
   const props = {
-    messageAddingState: getMessageAddingState(state),
+    sendingMessageError: getMessageAddingState(state),
   };
   return props;
 };
@@ -20,9 +20,9 @@ class Alert extends React.Component {
   );
 
   render() {
-    const { messageAddingState } = this.props;
-    const messageSendingFailed = messageAddingState === 'failed';
-    return messageSendingFailed
+    const { sendingMessageError } = this.props;
+    const isMessageSendingFailed = !!sendingMessageError;
+    return isMessageSendingFailed
       ? this.renderAllert('Slack couldn’t send this message. Try again')
       : null;
   }

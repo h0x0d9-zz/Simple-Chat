@@ -26,9 +26,19 @@ const messages = handleActions({
   },
 }, {});
 
+const errors = handleActions({
+  [actions.addMessageFailure](state, { payload }) {
+    return ({ ...state, addMessageFailure: payload });
+  },
+  [actions.addMessage](state, { payload: { type } }) {
+    return _.omit(state, 'addMessageFailure');
+  },
+}, {});
+
 export default combineReducers({
   form: formReducer,
   channels,
   messages,
+  errors,
   currentChannel,
 });

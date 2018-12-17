@@ -2,13 +2,12 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import _ from 'lodash';
 import connect from '../connect';
-import { getCurrentChannelId, getMessageAddingState } from '../selectors';
+import { getCurrentChannelId } from '../selectors';
 
 
 const mapStateToProps = (state) => {
   const props = {
     currentChannelId: getCurrentChannelId(state),
-    messageAddingState: getMessageAddingState(state),
   };
   return props;
 };
