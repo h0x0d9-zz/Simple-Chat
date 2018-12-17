@@ -1,5 +1,6 @@
 import '@babel/polyfill';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.css';
 import '../assets/application.css';
 import faker from 'faker';
 import cookies from 'js-cookie';
