@@ -13,9 +13,9 @@
     "test": "jest",
     "build-server": "babel server --out-dir dist --source-maps inline",
     "build-app": "npx webpack -p --env production",
-    "build": "npm run build-app && npm run build-server",
-    "postinstall": "npm run build",
-    "heroku-postbuild": "webpack -p",
+    "build": "npm run build-server",
+    "postinstall": "npm run build-app",
+    "heroku-postbuild": "npm run build-app",
     "dev": "babel-node ./server/bin/slack.js",
     "start": "node ./dist/bin/slack.js"
   },
