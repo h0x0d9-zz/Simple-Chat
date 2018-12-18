@@ -36,7 +36,6 @@ export default () => {
   } else {
     const urlPrefix = '/assets';
     const assetsPath = path.resolve(`${__dirname}/../dist/public`);
-    console.log('**** ', assetsPath);
     app.use(mount(urlPrefix, serve(assetsPath)));
   }
 
