@@ -21,7 +21,7 @@ const messages = handleActions({
   [actions.addMessages](state, { payload }) {
     return _.keyBy(payload, m => m.id);
   },
-  [actions.addMessage](state, { payload }) {
+  [actions.addMessageSuccess](state, { payload }) {
     return { ...state, [payload.id]: payload };
   },
 }, {});
@@ -30,7 +30,7 @@ const errors = handleActions({
   [actions.addMessageFailure](state, { payload }) {
     return ({ ...state, addMessageFailure: payload });
   },
-  [actions.addMessage](state) {
+  [actions.addMessageSuccess](state) {
     return _.omit(state, 'addMessageFailure');
   },
 }, {});

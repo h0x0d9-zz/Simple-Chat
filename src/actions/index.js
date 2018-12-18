@@ -13,7 +13,7 @@ export const setCurrentChannel = createAction('CURRENT_CHANNEL_SET');
 
 export const addMessages = createAction('MESSAGES_ADD');
 
-export const addMessage = createAction('MESSAGE_ADD_SUCCESS');
+export const addMessageSuccess = createAction('MESSAGE_ADD_SUCCESS');
 export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
 
 export const sendMessage = (text, channelId) => async (dispatch) => {
