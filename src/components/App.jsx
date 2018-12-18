@@ -30,7 +30,7 @@ export default class App extends React.Component {
         </div>
         <div className="col-lg-8 col-xl-9">
           <MessagesList />
-          <Alert/>
+          <Alert />
           <NewMessageForm />
         </div>
       </div>

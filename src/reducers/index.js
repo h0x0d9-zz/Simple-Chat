@@ -30,7 +30,7 @@ const errors = handleActions({
   [actions.addMessageFailure](state, { payload }) {
     return ({ ...state, addMessageFailure: payload });
   },
-  [actions.addMessage](state, { payload: { type } }) {
+  [actions.addMessage](state) {
     return _.omit(state, 'addMessageFailure');
   },
 }, {});
