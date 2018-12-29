@@ -38,6 +38,9 @@ const messages = handleActions({
   [actions.addMessageSuccess](state, { payload }) {
     return { ...state, [payload.id]: payload };
   },
+  [actions.removeChannelSuccess](state, { payload: { id } }) {
+    return _.pickBy(state, ({ channelId }) => channelId !== id);
+  },
 }, {});
 
 const messageAddingState = handleActions({
@@ -156,10 +159,10 @@ const modal = handleActions({
     };
   },
 },
-{
-  modalType: null,
-  modalProps: {},
-});
+  {
+    modalType: null,
+    modalProps: {},
+  });
 
 
 export default combineReducers({
