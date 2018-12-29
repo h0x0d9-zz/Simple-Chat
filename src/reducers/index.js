@@ -158,11 +158,10 @@ const modal = handleActions({
       modalProps: {},
     };
   },
-},
-  {
-    modalType: null,
-    modalProps: {},
-  });
+}, {
+  modalType: null,
+  modalProps: {},
+});
 
 
 export default combineReducers({

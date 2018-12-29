@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
 import axios from 'axios';
-import cookies from 'js-cookie';
 import routes from '../routes';
 import debug from '../../lib/logger';
 
