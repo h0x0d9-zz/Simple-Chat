@@ -21,7 +21,24 @@ cookies.set('name', username);
 const store = createStore(gon);
 
 const socket = io();
-socket.on('newMessage',
-  ({ data: { attributes } }) => store.dispatch(actions.addMessageSuccess(attributes)));
+socket.on(
+  'newMessage',
+  ({ data: { attributes } }) => store.dispatch(actions.addMessageSuccess(attributes))
+);
+
+socket.on(
+  'newChannel',
+  ({ data: { attributes } }) => store.dispatch(actions.addChannelSuccess(attributes)),
+);
+
+socket.on(
+  'removeChannel',
+  ({ data }) => store.dispatch(actions.removeChannelSuccess(data)),
+);
+
+socket.on(
+  'renameChannel',
+  ({ data: { attributes } }) => store.dispatch(actions.renameChannelSuccess(attributes)),
+);
 
 initApp(username, store);

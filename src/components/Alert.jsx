@@ -1,10 +1,12 @@
 import React from 'react';
 import connect from '../connect';
-import { getMessageAddingState } from '../selectors';
+import { ajaxRequestsSelector, getErrors } from '../selectors';
 
-const mapStateToProps = (state) => {
+
+const mapStateToProps = (state, { type }) => {
   const props = {
-    sendingMessageError: getMessageAddingState(state),
+    show: ajaxRequestsSelector(state)[type] === 'failed',
+    error: getErrors(state)[type],
   };
   return props;
 };
@@ -12,18 +14,13 @@ const mapStateToProps = (state) => {
 export default @connect(mapStateToProps)
 class Alert extends React.Component {
   renderAllert = text => (
-    <div className="row align-items-end">
-      <div className="col-12">
-        <div className="alert alert-warning" role="alert">{text}</div>
-      </div>
-    </div>
+    <div className="alert alert-warning my-2" role="alert">{text}</div>
   );
 
   render() {
-    const { sendingMessageError } = this.props;
-    const isMessageSendingFailed = !!sendingMessageError;
-    return isMessageSendingFailed
-      ? this.renderAllert('Slack couldn’t send this message. Try again')
+    const { show, error } = this.props;
+    return show
+      ? this.renderAllert(error)
       : null;
   }
 }

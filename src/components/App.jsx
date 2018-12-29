@@ -3,12 +3,14 @@ import ChannelsList from './ChannelsList';
 import NewMessageForm from './NewMessageForm';
 import MessagesList from './MessagesList';
 import Alert from './Alert';
+import RootModal from './Modal';
 
 
 export default class App extends React.Component {
   render() {
     return (
       <div className="row">
+        <RootModal />
         <div className="col-lg-4 col-xl-3 mb-2">
           <nav className="navbar navbar-expand-lg navbar-light bg-light flex-lg-column">
             <a className="navbar-brand" href="./">Channels</a>
@@ -30,7 +32,7 @@ export default class App extends React.Component {
         </div>
         <div className="col-lg-8 col-xl-9">
           <MessagesList />
-          <Alert />
+          <Alert type="addMessage" />
           <NewMessageForm />
         </div>
       </div>

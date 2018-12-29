@@ -1,15 +1,16 @@
 import { createSelector } from 'reselect';
 
 
-const getChannels = state => state.channels;
-const getMessages = state => state.messages;
-
 export const getCurrentChannelId = state => state.currentChannel.id;
+
+const getChannels = state => state.channels;
 
 export const channelsSelector = createSelector(
   getChannels,
   data => Object.values(data),
 );
+
+const getMessages = state => state.messages;
 
 export const messagesSelector = createSelector(
   getMessages,
@@ -18,4 +19,22 @@ export const messagesSelector = createSelector(
     .filter(m => m.channelId === channelId),
 );
 
-export const getMessageAddingState = state => state.errors.addMessageFailure;
+export const ajaxRequestsSelector = (state) => {
+  const {
+    messageAddingState,
+    channelAddingState,
+    channelRemovingState,
+    channelRenamingState,
+  } = state;
+
+  return {
+    addMessage: messageAddingState,
+    addChannel: channelAddingState,
+    removeChannel: channelRemovingState,
+    renameChannel: channelRenamingState,
+  };
+};
+
+export const getErrors = state => state.errors;
+
+export const getModalState = state => state.modal;
