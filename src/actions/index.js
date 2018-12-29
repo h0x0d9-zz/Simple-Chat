@@ -18,13 +18,13 @@ export const addMessageRequest = createAction('MESSAGE_ADD_REQUEST');
 export const addMessageSuccess = createAction('MESSAGE_ADD_SUCCESS');
 export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
 
-export const sendMessage = (text, channelId) => async (dispatch) => {
-  log('calling ACTION sendMessage with %o, %o params', text, channelId);
+export const sendMessage = (text, author, channelId) => async (dispatch) => {
+  log('calling ACTION sendMessage with %o, %o params', text, author, channelId);
   dispatch(addMessageRequest());
   try {
     const data = {
       attributes: {
-        author: cookies.get('name'),
+        author,
         text,
         time: new Date(),
       },

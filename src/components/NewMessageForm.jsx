@@ -3,6 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import _ from 'lodash';
 import connect from '../connect';
 import { getCurrentChannelId } from '../selectors';
+import UserContext from '../context/userContext';
 
 
 const mapStateToProps = (state) => {
@@ -21,33 +22,43 @@ const mapStateToProps = (state) => {
   },
 })
 class NewMessageForm extends React.Component {
-  sendMessage = ({ text }) => {
+  static contextType = UserContext;
+
+  sendMessage = author => ({ text }) => {
     const { currentChannelId, sendMessage } = this.props;
-    return sendMessage(_.escape(text), currentChannelId);
+    return sendMessage(_.escape(text), author, currentChannelId);
   };
 
   render() {
     const { handleSubmit, submitting } = this.props;
     return (
-      <div className="row align-items-end">
-        <div className="col-12">
-          <form
-            onSubmit={handleSubmit(this.sendMessage)}
-            className="input-group input-group-lg"
-          >
-            <Field
-              name="text"
-              required
-              disabled={submitting}
-              component="input"
-              type="text"
-              className="form-control"
-            />
-          </form>
-        </div>
-      </div>
+      <UserContext.Consumer>
+        {
+          username => (
+            <div className="row align-items-end">
+              <div className="col-12">
+                <form
+                  onSubmit={handleSubmit(this.sendMessage(username))}
+                  className="input-group input-group-lg"
+                >
+                  <Field
+                    name="text"
+                    required
+                    disabled={submitting}
+                    component="input"
+                    type="text"
+                    className="form-control"
+                    autoComplete="off"
+                  />
+                </form>
+              </div>
+            </div>
+          )
+        }
+      </UserContext.Consumer>
     );
   }
 }
+
 
 export default NewMessageForm;
