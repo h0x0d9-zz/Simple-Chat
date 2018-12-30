@@ -1,11 +1,23 @@
 import React from 'react';
 import connect from '../connect';
-import { ajaxRequestsSelector, getErrors } from '../selectors';
+import {
+  getMessageAddingState,
+  getChannelAddingState,
+  getChannelRemovingState,
+  getChannelRenamingState,
+  getErrors,
+} from '../selectors';
 
+const AlertTypes = {
+  addMessage: getMessageAddingState,
+  addChannel: getChannelAddingState,
+  removeChannel: getChannelRemovingState,
+  renameChannel: getChannelRenamingState,
+};
 
 const mapStateToProps = (state, { type }) => {
   const props = {
-    show: ajaxRequestsSelector(state)[type] === 'failed',
+    show: AlertTypes[type](state) === 'failed',
     error: getErrors(state)[type],
   };
   return props;

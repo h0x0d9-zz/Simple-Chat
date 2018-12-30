@@ -3,19 +3,19 @@ import { Modal, Button } from 'react-bootstrap';
 import { reduxForm, Field } from 'redux-form';
 import Alert from '../Alert';
 import connect from '../../connect';
-import { ajaxRequestsSelector } from '../../selectors';
+import { getChannelRenamingState } from '../../selectors';
 
 
 const mapStateToProps = (state) => {
   const props = {
-    renamingState: ajaxRequestsSelector(state).renameChannel,
+    renamingState: getChannelRenamingState(state),
   };
   return props;
 };
 
 @connect(mapStateToProps)
 @reduxForm({
-  form: 'removeChannel',
+  form: 'renameChannel',
   onSubmitSuccess: (...args) => {
     const [, , props] = args;
     props.reset();

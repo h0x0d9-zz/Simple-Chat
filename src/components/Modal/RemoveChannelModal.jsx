@@ -3,12 +3,12 @@ import { Modal, Button } from 'react-bootstrap';
 import { reduxForm } from 'redux-form';
 import Alert from '../Alert';
 import connect from '../../connect';
-import { ajaxRequestsSelector } from '../../selectors';
+import { getChannelRemovingState } from '../../selectors';
 
 
 const mapStateToProps = (state) => {
   const props = {
-    removingState: ajaxRequestsSelector(state).removeChannel,
+    removingState: getChannelRemovingState(state),
   };
   return props;
 };

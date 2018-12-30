@@ -19,21 +19,10 @@ export const messagesSelector = createSelector(
     .filter(m => m.channelId === channelId),
 );
 
-export const ajaxRequestsSelector = (state) => {
-  const {
-    messageAddingState,
-    channelAddingState,
-    channelRemovingState,
-    channelRenamingState,
-  } = state;
-
-  return {
-    addMessage: messageAddingState,
-    addChannel: channelAddingState,
-    removeChannel: channelRemovingState,
-    renameChannel: channelRenamingState,
-  };
-};
+export const getMessageAddingState = state => state.messageAddingState;
+export const getChannelAddingState = state => state.channelAddingState;
+export const getChannelRemovingState = state => state.channelRemovingState;
+export const getChannelRenamingState = state => state.channelRenamingState;
 
 export const getErrors = state => state.errors;
 
