@@ -26,7 +26,7 @@ class NewMessageForm extends React.Component {
 
   sendMessage = author => ({ text }) => {
     const { currentChannelId, sendMessage } = this.props;
-    return sendMessage(_.escape(text), author, currentChannelId);
+    return sendMessage(text, author, currentChannelId);
   };
 
   render() {
