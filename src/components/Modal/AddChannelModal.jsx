@@ -16,10 +16,6 @@ const mapStateToProps = (state) => {
 @connect(mapStateToProps)
 @reduxForm({
   form: 'addNewChannel',
-  onSubmitSuccess: (...args) => {
-    const [, , props] = args;
-    props.reset();
-  },
 })
 class AddChannelModal extends React.Component {
   addChannel = ({ channelName }) => {
