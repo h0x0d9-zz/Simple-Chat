@@ -100,7 +100,7 @@ class ChannelsList extends React.Component {
                     </a>
                   </div>
                   <div className="col-4 mt-1">
-                    {removable ? this.renderChannelControls(ch) : null}
+                    {removable && this.renderChannelControls(ch)}
                   </div>
                 </div>
 
