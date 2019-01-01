@@ -1,6 +1,5 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-import _ from 'lodash';
 import connect from '../connect';
 import { getCurrentChannelId } from '../selectors';
 import UserContext from '../context/userContext';
