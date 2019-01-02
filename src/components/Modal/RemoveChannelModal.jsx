@@ -3,17 +3,9 @@ import { Modal, Button } from 'react-bootstrap';
 import { reduxForm } from 'redux-form';
 import Alert from '../Alert';
 import connect from '../../connect';
-import { getChannelRemovingState } from '../../selectors';
 
 
-const mapStateToProps = (state) => {
-  const props = {
-    removingState: getChannelRemovingState(state),
-  };
-  return props;
-};
-
-@connect(mapStateToProps)
+@connect(null)
 @reduxForm({
   form: 'removeChannel',
   onSubmitSuccess: (...args) => {
@@ -46,7 +38,7 @@ class removeChannelModal extends React.Component {
                 This action cannot be undone.
                 This will permanently delete the channel and remove all messages in.
               </p>
-              <Alert type="removeChannel" />
+              <Alert type="channel" />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={hideModal}>Cancel</Button>

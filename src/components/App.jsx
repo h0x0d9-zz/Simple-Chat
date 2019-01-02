@@ -9,7 +9,7 @@ import RootModal from './Modal';
 const Body = () => (
   <div className="col-lg-8 col-xl-9">
     <MessagesList />
-    <Alert type="addMessage" />
+    <Alert type="message" />
     <NewMessageForm />
   </div>
 );

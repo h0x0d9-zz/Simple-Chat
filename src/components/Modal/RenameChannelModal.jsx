@@ -3,17 +3,9 @@ import { Modal, Button } from 'react-bootstrap';
 import { reduxForm, Field } from 'redux-form';
 import Alert from '../Alert';
 import connect from '../../connect';
-import { getChannelRenamingState } from '../../selectors';
 
 
-const mapStateToProps = (state) => {
-  const props = {
-    renamingState: getChannelRenamingState(state),
-  };
-  return props;
-};
-
-@connect(mapStateToProps)
+@connect(null)
 @reduxForm({
   form: 'renameChannel',
 })
@@ -48,7 +40,7 @@ class RenameChannelModal extends React.Component {
                 className="form-control"
                 autoComplete="off"
               />
-              <Alert type="renameChannel" />
+              <Alert type="channel" />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={hideModal}>Cancel</Button>

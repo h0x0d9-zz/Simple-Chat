@@ -3,17 +3,9 @@ import { Modal, Button } from 'react-bootstrap';
 import { reduxForm, Field } from 'redux-form';
 import Alert from '../Alert';
 import connect from '../../connect';
-import { getChannelAddingState } from '../../selectors';
 
 
-const mapStateToProps = (state) => {
-  const props = {
-    addingState: getChannelAddingState(state),
-  };
-  return props;
-};
-
-@connect(mapStateToProps)
+@connect(null)
 @reduxForm({
   form: 'addNewChannel',
 })
@@ -48,7 +40,7 @@ class AddChannelModal extends React.Component {
                 className="form-control"
                 autoComplete="off"
               />
-              <Alert type="addChannel" />
+              <Alert type="channel" />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={hideModal}>Cancel</Button>

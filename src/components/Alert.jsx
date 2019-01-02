@@ -2,17 +2,13 @@ import React from 'react';
 import connect from '../connect';
 import {
   getMessageAddingState,
-  getChannelAddingState,
-  getChannelRemovingState,
-  getChannelRenamingState,
+  getChannelControllingState,
   getErrors,
 } from '../selectors';
 
 const AlertTypes = {
-  addMessage: getMessageAddingState,
-  addChannel: getChannelAddingState,
-  removeChannel: getChannelRemovingState,
-  renameChannel: getChannelRenamingState,
+  message: getMessageAddingState,
+  channel: getChannelControllingState,
 };
 
 const mapStateToProps = (state, { type }) => {

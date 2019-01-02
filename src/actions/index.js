@@ -37,13 +37,15 @@ export const sendMessage = (text, author, channelId) => async (dispatch) => {
   }
 };
 
-export const addChannelRequest = createAction('CHANNEL_ADD_REQUEST');
+export const controlChannelRequest = createAction('CHANNEL_CONTROL_REQUEST');
 export const addChannelSuccess = createAction('CHANNEL_ADD_SUCCESS');
-export const addChannelFailure = createAction('CHANNEL_ADD_FAILURE');
+export const removeChannelSuccess = createAction('CHANNEL_REMOVE_SUCCESS');
+export const renameChannelSuccess = createAction('CHANNEL_RENAME_SUCCESS');
+export const controlChannelFailure = createAction('CHANNEL_CONTROL_FAILURE');
 
 export const addChannel = channelName => async (dispatch) => {
   log('calling ACTION addChannel with %o param', channelName);
-  dispatch(addChannelRequest());
+  dispatch(controlChannelRequest());
   try {
     const data = {
       attributes: {
@@ -55,33 +57,25 @@ export const addChannel = channelName => async (dispatch) => {
     log('sending message query result {%o}', resp.status);
   } catch (e) {
     log('caught error %o ', e.message);
-    dispatch(addChannelFailure('Slack couldn\'t add this channel. Try again'));
+    dispatch(controlChannelFailure('Slack couldn\'t add this channel. Try again'));
   }
 };
 
-export const removeChannelRequest = createAction('CHANNEL_REMOVE_REQUEST');
-export const removeChannelSuccess = createAction('CHANNEL_REMOVE_SUCCESS');
-export const removeChannelFailure = createAction('CHANNEL_REMOVE_FAILURE');
-
 export const removeChannel = id => async (dispatch) => {
   log('calling ACTION removeChannel with %o param', id);
-  dispatch(removeChannelRequest());
+  dispatch(controlChannelRequest());
   try {
     const resp = await axios.delete(routes.channel(id));
     log('deleting channel query result {%o}', resp.status);
   } catch (e) {
     log('caught error %o', e.message);
-    dispatch(removeChannelFailure('Slack couldn\'t remove this channel. Try again'));
+    dispatch(controlChannelFailure('Slack couldn\'t remove this channel. Try again'));
   }
 };
 
-export const renameChannelRequest = createAction('CHANNEL_RENAME_REQUEST');
-export const renameChannelSuccess = createAction('CHANNEL_RENAME_SUCCESS');
-export const renameChannelFailure = createAction('CHANNEL_RENAME_FAILURE');
-
 export const renameChannel = (id, name) => async (dispatch) => {
   log('calling ACTION renameChannel with %o param', id, name);
-  dispatch(renameChannelRequest());
+  dispatch(controlChannelRequest());
   try {
     const data = {
       attributes: {
@@ -92,6 +86,6 @@ export const renameChannel = (id, name) => async (dispatch) => {
     log('rennaming channel query result {%o}', resp.status);
   } catch (e) {
     log('caught error %o', e.message);
-    dispatch(renameChannelFailure('Slack couldn\'t rename this channel. Try again'));
+    dispatch(controlChannelFailure('Slack couldn\'t rename this channel. Try again'));
   }
 };

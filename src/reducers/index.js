@@ -55,44 +55,20 @@ const messageAddingState = handleActions({
   },
 }, 'none');
 
-const channelAddingState = handleActions({
-  [actions.addChannelRequest]() {
+const channelControllingState = handleActions({
+  [actions.controlChannelRequest]() {
     return 'requested';
   },
   [actions.addChannelSuccess]() {
     return 'successed';
   },
-  [actions.addChannelFailure]() {
-    return 'failed';
-  },
-  [actions.hideModal]() {
-    return 'none';
-  },
-}, 'none');
-
-const channelRemovingState = handleActions({
-  [actions.removeChannelRequest]() {
-    return 'requested';
+  [actions.renameChannelSuccess]() {
+    return 'successed';
   },
   [actions.removeChannelSuccess]() {
     return 'successed';
   },
-  [actions.removeChannelFailure]() {
-    return 'failed';
-  },
-  [actions.hideModal]() {
-    return 'none';
-  },
-}, 'none');
-
-const channelRenamingState = handleActions({
-  [actions.renameChannelRequest]() {
-    return 'requested';
-  },
-  [actions.renameChannelSuccess]() {
-    return 'successed';
-  },
-  [actions.renameChannelFailure]() {
+  [actions.controlChannelFailure]() {
     return 'failed';
   },
   [actions.hideModal]() {
@@ -102,30 +78,23 @@ const channelRenamingState = handleActions({
 
 const errors = handleActions({
   [actions.addMessageFailure](state, { payload }) {
-    return { ...state, addMessage: payload };
+    return { ...state, message: payload };
   },
   [actions.addMessageRequest](state) {
-    return _.omit(state, 'addMessage');
+    return _.omit(state, 'message');
   },
-  [actions.addChannelFailure](state, { payload }) {
-    return { ...state, addChannel: payload };
+  [actions.controlChannelFailure](state, { payload }) {
+    return { ...state, channel: payload };
   },
-  [actions.addChannelRequest](state) {
-    return _.omit(state, 'addChannel');
-  },
-  [actions.removeChannelFailure](state, { payload }) {
-    return { ...state, removeChannel: payload };
-  },
-  [actions.removeChannelRequest](state) {
-    return _.omit(state, 'removeChannel');
-  },
-  [actions.renameChannelFailure](state, { payload }) {
-    return { ...state, renameChannel: payload };
-  },
-  [actions.renameChannelRequest](state) {
-    return _.omit(state, 'renameChannel');
+  [actions.controlChannelRequest](state) {
+    return _.omit(state, 'channel');
   },
 }, {});
+
+const initialModalState = {
+  modalType: null,
+  modalProps: {},
+};
 
 const modal = handleActions({
   [actions.showModal](state, { payload: { modalType, modalProps } }) {
@@ -135,33 +104,19 @@ const modal = handleActions({
     };
   },
   [actions.hideModal]() {
-    return {
-      modalType: null,
-      modalProps: {},
-    };
+    return initialModalState;
   },
   [actions.addChannelSuccess]() {
-    return {
-      modalType: null,
-      modalProps: {},
-    };
-  },
-  [actions.removeChannelSuccess]() {
-    return {
-      modalType: null,
-      modalProps: {},
-    };
+    return initialModalState;
   },
   [actions.renameChannelSuccess]() {
-    return {
-      modalType: null,
-      modalProps: {},
-    };
+    return initialModalState;
   },
-}, {
-  modalType: null,
-  modalProps: {},
-});
+  [actions.removeChannelSuccess]() {
+    return initialModalState;
+  },
+},
+initialModalState);
 
 
 export default combineReducers({
@@ -169,9 +124,7 @@ export default combineReducers({
   channels,
   messages,
   messageAddingState,
-  channelAddingState,
-  channelRemovingState,
-  channelRenamingState,
+  channelControllingState,
   errors,
   modal,
   currentChannel,

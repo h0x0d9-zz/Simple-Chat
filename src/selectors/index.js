@@ -20,10 +20,6 @@ export const messagesSelector = createSelector(
 );
 
 export const getMessageAddingState = state => state.messageAddingState;
-export const getChannelAddingState = state => state.channelAddingState;
-export const getChannelRemovingState = state => state.channelRemovingState;
-export const getChannelRenamingState = state => state.channelRenamingState;
-
+export const getChannelControllingState = state => state.channelControllingState;
 export const getErrors = state => state.errors;
-
 export const getModalState = state => state.modal;
